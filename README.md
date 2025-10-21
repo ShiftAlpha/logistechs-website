@@ -1,7 +1,3 @@
-# Logistechs Website
-
-## Purpose
-This Flutter web application is a precursor to the Logistechs web app, replicating the design and functionality of the [Muvyr website](https://muvyr.com/). It serves as a marketing and information website for Logistechs, a digital logistics platform designed to power African road freight operations.
 
 ## Project Overview
 Logistechs is a comprehensive, integrated platform that combines Transport Management, Resource Planning, Route Optimization, and Fleet Management software into a centralized solution for road freight operators across Africa.
