@@ -2,7 +2,7 @@
 /// Page banner, carousel, and alternating feature sections
 
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:carousel_slider/carousel_slider.dart' as carousel;
 import 'package:animate_do/animate_do.dart';
 import '../widgets/custom_navbar.dart';
 import '../widgets/custom_footer.dart';
@@ -76,8 +76,8 @@ class _FeaturesPageState extends State<FeaturesPage> {
       ),
       child: Column(
         children: [
-          CarouselSlider(
-            options: CarouselOptions(
+          carousel.CarouselSlider(
+            options: carousel.CarouselOptions(
               height: 400,
               autoPlay: true,
               autoPlayInterval: const Duration(seconds: 5),
