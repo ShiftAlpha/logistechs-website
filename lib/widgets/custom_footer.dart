@@ -106,7 +106,7 @@ class CustomFooter extends StatelessWidget {
         _buildFooterLink(context, 'Company', AppRoutes.company),
         _buildFooterLink(context, 'Features', AppRoutes.features),
         _buildFooterLink(context, 'FAQs', AppRoutes.faqs),
-        _buildFooterLink(context, 'Why Choose Muvyr', AppRoutes.whyChoose),
+        _buildFooterLink(context, 'Why Choose Logistechs', AppRoutes.whyChoose),
         _buildFooterLink(context, 'Contact Us', AppRoutes.contact),
       ],
     );

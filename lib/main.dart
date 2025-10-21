@@ -1,6 +1,4 @@
 /// Main entry point for the Logistechs Website
-/// 
-/// This Flutter web application replicates the Muvyr website for Logistechs,
 /// a digital logistics platform for African road freight operations.
 
 import 'package:flutter/material.dart';

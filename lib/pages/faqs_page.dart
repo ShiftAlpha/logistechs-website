@@ -44,8 +44,8 @@ class _FaqsPageState extends State<FaqsPage> {
     },
     {
       'question': 'DOES LOGISTECHS HAVE A DRIVER APP?',
-      'answer': 'LOGISTECHS can be configured with or without the Muvyr Driver app.\n\n'
-          'The Muvyr Driver app enables your drivers to complete checklists, view all upcoming trips, '
+      'answer': 'LOGISTECHS can be configured with or without the Logistechs Driver app.\n\n'
+          'The Logistechs Driver app enables your drivers to complete checklists, view all upcoming trips, '
           'be tracked in real-time (outside of your tracking devices) and upload digital proofs of '
           'deliveries (e-signed on the app).',
     },
