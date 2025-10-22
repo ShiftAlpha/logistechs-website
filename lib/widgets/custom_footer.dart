@@ -1,6 +1,6 @@
-/// Custom Footer Widget
-/// Four-section footer with logo, quick links, contact info, and social icons
-/// Includes scroll-to-top button and copyright notice
+// Custom Footer Widget
+// Four-section footer with logo, quick links, contact info, and social icons
+// Includes scroll-to-top button and copyright notice
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

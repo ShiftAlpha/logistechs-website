@@ -1,5 +1,5 @@
-/// Animated Container Widget
-/// Reusable animated container with fade-in and slide-up effects
+// Animated Container Widget
+// Reusable animated container with fade-in and slide-up effects
 
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
@@ -34,9 +34,9 @@ class AnimatedContainer extends StatelessWidget {
         padding: padding ?? const EdgeInsets.all(AppSpacing.xl),
         margin: margin,
         decoration: BoxDecoration(
-          color: isTransparent 
-              ? Colors.transparent 
-              : backgroundColor ?? AppColors.white.withOpacity(0.9),
+      color: isTransparent 
+        ? Colors.transparent 
+        : backgroundColor ?? AppColors.white.withValues(alpha: 0.9),
           borderRadius: BorderRadius.circular(
             borderRadius ?? AppRadius.lg,
           ),
@@ -44,7 +44,7 @@ class AnimatedContainer extends StatelessWidget {
               ? null
               : [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
+                    color: Colors.black.withValues(alpha: 0.1),
                     blurRadius: 20,
                     offset: const Offset(0, 10),
                   ),

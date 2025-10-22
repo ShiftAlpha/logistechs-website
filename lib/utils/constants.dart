@@ -1,5 +1,5 @@
-/// Constants file containing colors, text styles, and other app-wide constants
-/// This file centralizes all design tokens for consistent theming across the application
+// Constants file containing colors, text styles, and other app-wide constants
+// This file centralizes all design tokens for consistent theming across the application
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -151,6 +151,7 @@ class AppConstants {
   
   // External Links
   static const String loginUrl = 'https://logistechs-edl.web.app/';
+  static const String registerUrl = 'https://logistechs-edl.web.app/register';
   
   // Company Information
   static const String companyName = 'LOGISTECHS';

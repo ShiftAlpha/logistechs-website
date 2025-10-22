@@ -1,5 +1,5 @@
-/// Contact Form Widget
-/// Reusable contact form with validation and reCAPTCHA placeholder
+// Contact Form Widget
+// Reusable contact form with validation and reCAPTCHA placeholder
 
 import 'package:flutter/material.dart';
 import '../utils/constants.dart';

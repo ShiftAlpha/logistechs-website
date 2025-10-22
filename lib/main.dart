@@ -1,5 +1,5 @@
-/// Main entry point for the Logistechs Website
-/// a digital logistics platform for African road freight operations.
+// Main entry point for the Logistechs Website
+// a digital logistics platform for African road freight operations.
 
 import 'package:flutter/material.dart';
 import 'utils/constants.dart';

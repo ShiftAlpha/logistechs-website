@@ -1,5 +1,5 @@
-/// Why Choose Logistechs Page
-/// Banner with information and brochure download button
+// Why Choose Logistechs Page
+// Banner with information and brochure download button
 
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
@@ -97,7 +97,7 @@ class WhyChoosePage extends StatelessWidget {
           borderRadius: BorderRadius.circular(AppRadius.lg),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 20,
               offset: const Offset(0, 10),
             ),
@@ -150,34 +150,34 @@ class WhyChoosePage extends StatelessWidget {
   Widget _buildKeyFeaturesSection(BuildContext context) {
     final List<Map<String, dynamic>> features = [
       {
-        'icon': Icons.dashboard,
-        'title': 'Informative Dashboards',
-        'description': 'Get a comprehensive view of your operations with customizable dashboards that display the metrics that matter most to your business.',
+        'icon': Icons.dashboard_customize,
+        'title': 'Dashboards that Matter',
+        'description': 'Role-based dashboards and KPIs tailored to logistics: OTIF, utilization, empty miles and more.',
       },
       {
         'icon': Icons.notifications_active,
-        'title': 'Custom Alerts',
-        'description': 'Stay informed with real-time alerts tailored to your business needs. Never miss a critical event or opportunity.',
+        'title': 'Actionable Alerts',
+        'description': 'Real-time exceptions and custom thresholds so your team reacts before issues escalate.',
       },
       {
-        'icon': Icons.insights,
-        'title': 'Real-Time Intelligence',
-        'description': 'Access meaningful, actionable insights in real-time. Make informed decisions based on current data, not yesterday\'s reports.',
+        'icon': Icons.extension,
+        'title': 'Open Integrations',
+        'description': 'Accounting, trackers/telemetry and data exports via an open API and ready-made connectors.',
       },
       {
         'icon': Icons.phone_android,
-        'title': 'Mobile Access',
-        'description': 'Manage your business from anywhere with our mobile-friendly platform. Your business intelligence at your fingertips.',
+        'title': 'Mobile Apps',
+        'description': 'Flutter-powered Driver and Customer apps for e‑POD, tracking, chat and document access.',
       },
       {
-        'icon': Icons.trending_up,
-        'title': 'Strategic Decision-Making',
-        'description': 'Fuel your strategic planning with accurate, timely data. Make decisions that drive your business forward.',
+  'icon': Icons.lock_outline,
+        'title': 'Your Deployment, Your Choice',
+        'description': 'Run on a secured private cloud or on‑prem. Keep data ownership and meet compliance.',
       },
       {
-        'icon': Icons.integration_instructions,
-        'title': 'Digital Business Backbone',
-        'description': 'Build your digital infrastructure on a platform designed for growth, scalability, and reliability.',
+        'icon': Icons.tune,
+        'title': 'Custom Workflows',
+        'description': 'Model your real processes—forms, approvals and rules that match how your depots work.',
       },
     ];
 
@@ -237,7 +237,7 @@ class WhyChoosePage extends StatelessWidget {
           borderRadius: BorderRadius.circular(AppRadius.lg),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 20,
               offset: const Offset(0, 10),
             ),
@@ -253,7 +253,7 @@ class WhyChoosePage extends StatelessWidget {
                 gradient: LinearGradient(
                   colors: [
                     AppColors.primaryBlue,
-                    AppColors.primaryBlue.withOpacity(0.7),
+                    AppColors.primaryBlue.withValues(alpha: 0.7),
                   ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,

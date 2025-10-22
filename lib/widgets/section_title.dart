@@ -1,5 +1,5 @@
-/// Section Title Widget
-/// Reusable animated section title
+// Section Title Widget
+// Reusable animated section title
 
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';

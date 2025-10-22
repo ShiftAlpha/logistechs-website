@@ -1,5 +1,5 @@
-/// Responsive Helper Utilities
-/// Provides helper methods to determine screen size and build responsive layouts
+// Responsive Helper Utilities
+// Provides helper methods to determine screen size and build responsive layouts
 
 import 'package:flutter/material.dart';
 import 'constants.dart';

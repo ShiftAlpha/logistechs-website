@@ -1,5 +1,5 @@
-/// Custom Navigation Bar Widget
-/// Top navigation bar with logo, menu items, social icons, and login/register buttons
+// Custom Navigation Bar Widget
+// Top navigation bar with logo, menu items, social icons, and login/register buttons
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -110,12 +110,15 @@ class _CustomNavBarState extends State<CustomNavBar> {
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
         onTap: () => Navigator.pushNamed(context, AppRoutes.home),
-        child: Text(
-          'LOGISTECHS',
-          style: AppTextStyles.h4.copyWith(
-            color: AppColors.primaryBlue,
-            fontWeight: FontWeight.bold,
-          ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(
+              'assets/images/logistechs_icon.png',
+              height: 36,
+              fit: BoxFit.contain,
+            ),
+          ],
         ),
       ),
     );
@@ -165,6 +168,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
       onEnter: (_) => setState(() => _isOurSolutionHovered = true),
       onExit: (_) => setState(() => _isOurSolutionHovered = false),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           MouseRegion(
             cursor: SystemMouseCursors.click,
@@ -192,28 +196,26 @@ class _CustomNavBarState extends State<CustomNavBar> {
             ),
           ),
           if (_isOurSolutionHovered)
-            Positioned(
-              child: Material(
-                elevation: 4,
-                borderRadius: BorderRadius.circular(AppRadius.md),
-                child: Container(
-                  margin: const EdgeInsets.only(top: AppSpacing.md),
-                  padding: const EdgeInsets.all(AppSpacing.md),
-                  decoration: BoxDecoration(
-                    color: AppColors.white,
-                    borderRadius: BorderRadius.circular(AppRadius.md),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      _buildDropdownItem('Features', AppRoutes.features),
-                      const SizedBox(height: AppSpacing.sm),
-                      _buildDropdownItem('FAQs', AppRoutes.faqs),
-                      const SizedBox(height: AppSpacing.sm),
-                      _buildDropdownItem('Why Choose Logistechs', AppRoutes.whyChoose),
-                    ],
-                  ),
+            Material(
+              elevation: 4,
+              borderRadius: BorderRadius.circular(AppRadius.md),
+              child: Container(
+                margin: const EdgeInsets.only(top: AppSpacing.md),
+                padding: const EdgeInsets.all(AppSpacing.md),
+                decoration: BoxDecoration(
+                  color: AppColors.white,
+                  borderRadius: BorderRadius.circular(AppRadius.md),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    _buildDropdownItem('Features', AppRoutes.features),
+                    const SizedBox(height: AppSpacing.sm),
+                    _buildDropdownItem('FAQs', AppRoutes.faqs),
+                    const SizedBox(height: AppSpacing.sm),
+                    _buildDropdownItem('Why Choose Logistechs', AppRoutes.whyChoose),
+                  ],
                 ),
               ),
             ),
@@ -275,18 +277,40 @@ class _CustomNavBarState extends State<CustomNavBar> {
   }
 
   Widget _buildLoginRegister() {
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: GestureDetector(
-        onTap: () => UrlHelper.launchURL(AppConstants.loginUrl),
-        child: Text(
-          'LOGIN | REGISTER',
-          style: AppTextStyles.navLink.copyWith(
-            color: AppColors.primaryBlue,
-            fontWeight: FontWeight.w600,
+    return Row(
+      children: [
+        // Login icon
+        MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: GestureDetector(
+            onTap: () => UrlHelper.launchURL(AppConstants.loginUrl),
+            child: const Icon(
+              FontAwesomeIcons.rightToBracket,
+              size: 18,
+              color: AppColors.primaryBlue,
+            ),
           ),
         ),
-      ),
+        const SizedBox(width: AppSpacing.sm),
+        // Separator
+        Text(
+          '|',
+          style: AppTextStyles.navLink.copyWith(color: AppColors.textLight),
+        ),
+        const SizedBox(width: AppSpacing.sm),
+        // Register icon
+        MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: GestureDetector(
+            onTap: () => UrlHelper.launchURL(AppConstants.registerUrl),
+            child: const Icon(
+              FontAwesomeIcons.userPlus,
+              size: 18,
+              color: AppColors.primaryBlue,
+            ),
+          ),
+        ),
+      ],
     );
   }
 

@@ -1,5 +1,5 @@
-/// Home Page
-/// Main landing page with welcome section, benefits, and demo form
+// Home Page
+// Main landing page with welcome section, benefits, and demo form
 
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
@@ -78,10 +78,10 @@ class _HomePageState extends State<HomePage> {
               child: ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 800),
                 child: Text(
-                  'LOGISTECHS keeps your finger on the pulse of your business through dependable, '
-                  'informative dashboards, custom alerts and meaningful, real-time intelligence '
-                  'through a mobile, digital business backbone that fuels strategic decision-making, '
-                  'at your fingertips.',
+                  'LOGISTECHS is your end‑to‑end road freight platform built with modern Flutter apps and a secure cloud backbone. '
+                  'Unify Transport Management, Resource Planning, Route Optimization and Fleet Maintenance—then extend it with '
+                  'Driver and Customer apps, live dashboards, custom alerts and deep integrations (accounting, trackers and more). '
+                  'Deploy on a secured private cloud or on‑prem, keep full data ownership, and scale at your pace.',
                   style: AppTextStyles.bodyLarge,
                 ),
               ),
@@ -117,39 +117,39 @@ class _HomePageState extends State<HomePage> {
             childAspectRatio: isMobile ? 1.5 : 1.2,
             children: [
               _buildBenefitCard(
-                icon: Icons.speed,
-                title: 'Real-Time Tracking',
-                description: 'Monitor your fleet and shipments in real-time with our advanced tracking system.',
+                icon: Icons.local_shipping,
+                title: 'Transport Management',
+                description: 'Digitize dispatch, consolidate loads, track delivery milestones and PODs in one place.',
                 delay: 0,
               ),
               _buildBenefitCard(
-                icon: Icons.analytics,
-                title: 'Smart Analytics',
-                description: 'Make data-driven decisions with comprehensive analytics and reporting.',
+                icon: Icons.event_available,
+                title: 'Resource Planning',
+                description: 'Plan drivers, vehicles and depots with capacity views and utilization insights.',
                 delay: 200,
               ),
               _buildBenefitCard(
-                icon: Icons.integration_instructions,
-                title: 'Easy Integration',
-                description: 'Seamlessly integrate with your existing systems and workflows.',
+                icon: Icons.alt_route,
+                title: 'Route Optimization',
+                description: 'Optimize routes and reduce empty miles with smart routing and geo-visibility.',
                 delay: 400,
               ),
               _buildBenefitCard(
-                icon: Icons.cloud,
-                title: 'Cloud-Based',
-                description: 'Access your data anywhere, anytime with our secure cloud platform.',
+                icon: Icons.directions_car,
+                title: 'Fleet & Maintenance',
+                description: 'Track fleet health, service schedules and costs to keep assets road-ready.',
                 delay: 600,
               ),
               _buildBenefitCard(
-                icon: Icons.support_agent,
-                title: '24/7 Support',
-                description: 'Get round-the-clock support from our dedicated team of experts.',
+                icon: Icons.verified_user,
+                title: 'Compliance & SHEQ',
+                description: 'Digitize inspections, incidents and audits to stay compliant and safe.',
                 delay: 800,
               ),
               _buildBenefitCard(
-                icon: Icons.security,
-                title: 'Secure & Reliable',
-                description: 'Your data is protected with enterprise-grade security measures.',
+                icon: Icons.person_outline,
+                title: 'Customer Portal',
+                description: 'Give customers live ETA, tracking and proof-of-delivery for a seamless experience.',
                 delay: 1000,
               ),
             ],
@@ -175,7 +175,7 @@ class _HomePageState extends State<HomePage> {
           borderRadius: BorderRadius.circular(AppRadius.lg),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 20,
               offset: const Offset(0, 10),
             ),
@@ -188,7 +188,7 @@ class _HomePageState extends State<HomePage> {
               width: 60,
               height: 60,
               decoration: BoxDecoration(
-                color: AppColors.primaryBlue.withOpacity(0.1),
+                color: AppColors.primaryBlue.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(AppRadius.round),
               ),
               child: Icon(

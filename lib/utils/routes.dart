@@ -1,5 +1,5 @@
-/// App Routes Configuration
-/// Defines all route names and route generator for navigation
+// App Routes Configuration
+// Defines all route names and route generator for navigation
 
 import 'package:flutter/material.dart';
 import '../pages/home_page.dart';

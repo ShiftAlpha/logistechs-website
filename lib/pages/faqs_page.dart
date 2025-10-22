@@ -1,5 +1,5 @@
-/// FAQs Page
-/// Frequently Asked Questions with expandable panels
+// FAQs Page
+// Frequently Asked Questions with expandable panels
 
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
@@ -137,7 +137,7 @@ class _FaqsPageState extends State<FaqsPage> {
           borderRadius: BorderRadius.circular(AppRadius.lg),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 10,
               offset: const Offset(0, 4),
             ),

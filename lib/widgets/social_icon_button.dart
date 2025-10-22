@@ -1,5 +1,5 @@
-/// Social Icon Button Widget
-/// Animated social media icon button with bounce and jiggle effects
+// Social Icon Button Widget
+// Animated social media icon button with bounce and jiggle effects
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -93,9 +93,9 @@ class _SocialIconButtonState extends State<SocialIconButton>
                   width: 40,
                   height: 40,
                   decoration: BoxDecoration(
-                    color: _isHovered 
-                        ? widget.color.withOpacity(0.1) 
-                        : Colors.transparent,
+          color: _isHovered 
+            ? widget.color.withValues(alpha: 0.1) 
+            : Colors.transparent,
                     borderRadius: BorderRadius.circular(AppRadius.md),
                   ),
                   child: Center(

@@ -1,5 +1,5 @@
-/// Page Banner Widget
-/// Reusable page banner/hero section with title and description
+// Page Banner Widget
+// Reusable page banner/hero section with title and description
 
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';

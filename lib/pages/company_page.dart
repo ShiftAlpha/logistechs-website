@@ -1,5 +1,5 @@
-/// Company Page
-/// Our Story section with alternating text/images, Vision and Mission
+// Company Page
+// Our Story section with alternating text/images, Vision and Mission
 
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
@@ -168,7 +168,7 @@ class CompanyPage extends StatelessWidget {
           borderRadius: BorderRadius.circular(AppRadius.lg),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 20,
               offset: const Offset(0, 10),
             ),
@@ -178,7 +178,7 @@ class CompanyPage extends StatelessWidget {
           child: Icon(
             Icons.local_shipping,
             size: 80,
-            color: AppColors.primaryBlue.withOpacity(0.3),
+            color: AppColors.primaryBlue.withValues(alpha: 0.3),
           ),
         ),
       ),
@@ -221,7 +221,7 @@ class CompanyPage extends StatelessWidget {
           gradient: LinearGradient(
             colors: [
               AppColors.primaryBlue,
-              AppColors.primaryBlue.withOpacity(0.8),
+              AppColors.primaryBlue.withValues(alpha: 0.8),
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -229,7 +229,7 @@ class CompanyPage extends StatelessWidget {
           borderRadius: BorderRadius.circular(AppRadius.lg),
           boxShadow: [
             BoxShadow(
-              color: AppColors.primaryBlue.withOpacity(0.3),
+              color: AppColors.primaryBlue.withValues(alpha: 0.3),
               blurRadius: 20,
               offset: const Offset(0, 10),
             ),
@@ -268,7 +268,7 @@ class CompanyPage extends StatelessWidget {
           gradient: LinearGradient(
             colors: [
               AppColors.accentOrange,
-              AppColors.accentOrange.withOpacity(0.8),
+              AppColors.accentOrange.withValues(alpha: 0.8),
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -276,7 +276,7 @@ class CompanyPage extends StatelessWidget {
           borderRadius: BorderRadius.circular(AppRadius.lg),
           boxShadow: [
             BoxShadow(
-              color: AppColors.accentOrange.withOpacity(0.3),
+              color: AppColors.accentOrange.withValues(alpha: 0.3),
               blurRadius: 20,
               offset: const Offset(0, 10),
             ),
