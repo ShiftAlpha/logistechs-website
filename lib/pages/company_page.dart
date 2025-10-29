@@ -51,6 +51,7 @@ class CompanyPage extends StatelessWidget {
           _buildStoryParagraph(
             context,
             imagePosition: ImagePosition.left,
+            icon: Icons.local_shipping,
             text: 'LOGISTECHS was born from a vision to revolutionize the African logistics industry. '
                 'We recognized the unique challenges faced by road freight operators across the continent '
                 'and set out to create a comprehensive digital solution that addresses these needs.',
@@ -61,6 +62,7 @@ class CompanyPage extends StatelessWidget {
           _buildStoryParagraph(
             context,
             imagePosition: ImagePosition.right,
+            icon: Icons.memory,
             text: 'Our platform integrates cutting-edge technology with deep industry expertise to deliver '
                 'a solution that truly understands the complexities of road freight operations. From real-time '
                 'tracking to advanced analytics, we provide the tools you need to stay competitive.',
@@ -71,6 +73,7 @@ class CompanyPage extends StatelessWidget {
           _buildStoryParagraph(
             context,
             imagePosition: ImagePosition.left,
+            icon: Icons.public,
             text: 'Sea and air freight logistics have long benefited from digital transformation, but road '
                 'freight has lagged behind. LOGISTECHS bridges this gap, bringing world-class digital capabilities '
                 'to road freight operators across Africa.',
@@ -81,6 +84,7 @@ class CompanyPage extends StatelessWidget {
           _buildStoryParagraph(
             context,
             imagePosition: ImagePosition.right,
+            icon: Icons.tune,
             text: 'We understand that every logistics operation is unique. That\'s why LOGISTECHS is highly '
                 'customizable, adapting to your specific workflows and requirements. Our solution grows with your '
                 'business, scaling seamlessly as your operations expand.',
@@ -91,6 +95,7 @@ class CompanyPage extends StatelessWidget {
           _buildStoryParagraph(
             context,
             imagePosition: ImagePosition.left,
+            icon: Icons.handshake,
             text: 'Through partnerships with leading logistics companies and continuous innovation, we stay at '
                 'the forefront of industry developments. Our commitment to excellence drives us to constantly improve '
                 'and expand our platform\'s capabilities.',
@@ -101,6 +106,7 @@ class CompanyPage extends StatelessWidget {
           _buildStoryParagraph(
             context,
             imagePosition: ImagePosition.right,
+            icon: Icons.public,
             text: 'Today, LOGISTECHS serves logistics operators across Africa, helping them streamline operations, '
                 'reduce costs, and improve service delivery. Join us on our journey to transform African logistics, '
                 'one depot at a time.',
@@ -114,6 +120,7 @@ class CompanyPage extends StatelessWidget {
   Widget _buildStoryParagraph(
     BuildContext context, {
     required ImagePosition imagePosition,
+    required IconData icon,
     required String text,
     required int delay,
   }) {
@@ -122,7 +129,7 @@ class CompanyPage extends StatelessWidget {
     if (isMobile) {
       return Column(
         children: [
-          _buildStoryImage(delay: delay),
+          _buildStoryImage(icon: icon, delay: delay),
           const SizedBox(height: AppSpacing.lg),
           _buildStoryText(text: text, delay: delay + 200),
         ],
@@ -134,7 +141,7 @@ class CompanyPage extends StatelessWidget {
     );
     
     final imageWidget = Expanded(
-      child: _buildStoryImage(delay: delay + 200),
+      child: _buildStoryImage(icon: icon, delay: delay + 200),
     );
     
     return Row(
@@ -157,28 +164,28 @@ class CompanyPage extends StatelessWidget {
     );
   }
 
-  Widget _buildStoryImage({required int delay}) {
+  Widget _buildStoryImage({required IconData icon, required int delay}) {
     return FadeInUp(
       duration: AppConstants.longAnimation,
       delay: Duration(milliseconds: delay),
       child: Container(
         height: 300,
         decoration: BoxDecoration(
-          color: AppColors.lightGrey,
+          color: AppColors.white,
           borderRadius: BorderRadius.circular(AppRadius.lg),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.1),
-              blurRadius: 20,
-              offset: const Offset(0, 10),
+              color: Colors.black.withValues(alpha: 0.12),
+              blurRadius: 28,
+              offset: const Offset(0, 12),
             ),
           ],
         ),
         child: Center(
           child: Icon(
-            Icons.local_shipping,
-            size: 80,
-            color: AppColors.primaryBlue.withValues(alpha: 0.3),
+            icon,
+            size: 100,
+            color: Colors.black,
           ),
         ),
       ),
@@ -217,41 +224,27 @@ class CompanyPage extends StatelessWidget {
       duration: AppConstants.longAnimation,
       child: Container(
         padding: const EdgeInsets.all(AppSpacing.xxxl),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              AppColors.primaryBlue,
-              AppColors.primaryBlue.withValues(alpha: 0.8),
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-          borderRadius: BorderRadius.circular(AppRadius.lg),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.primaryBlue.withValues(alpha: 0.3),
-              blurRadius: 20,
-              offset: const Offset(0, 10),
-            ),
-          ],
-        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Icon(
-              Icons.visibility,
-              size: 50,
-              color: AppColors.white,
-            ),
-            const SizedBox(height: AppSpacing.lg),
-            Text(
-              'Our Vision',
-              style: AppTextStyles.h3.copyWith(color: AppColors.white),
+            Row(
+              children: [
+                const Icon(
+                  Icons.visibility,
+                  size: 36,
+                  color: Color(0xFF1E3A8A),
+                ),
+                const SizedBox(width: AppSpacing.sm),
+                Text(
+                  'Our Vision',
+                  style: AppTextStyles.h3.copyWith(color: Color(0xFF1E3A8A)),
+                ),
+              ],
             ),
             const SizedBox(height: AppSpacing.md),
             Text(
               AppConstants.vision,
-              style: AppTextStyles.bodyLarge.copyWith(color: AppColors.white),
+              style: AppTextStyles.bodyLarge.copyWith(color: const Color(0xFF1E3A8A)),
             ),
           ],
         ),
@@ -264,41 +257,27 @@ class CompanyPage extends StatelessWidget {
       duration: AppConstants.longAnimation,
       child: Container(
         padding: const EdgeInsets.all(AppSpacing.xxxl),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              AppColors.accentOrange,
-              AppColors.accentOrange.withValues(alpha: 0.8),
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-          borderRadius: BorderRadius.circular(AppRadius.lg),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.accentOrange.withValues(alpha: 0.3),
-              blurRadius: 20,
-              offset: const Offset(0, 10),
-            ),
-          ],
-        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Icon(
-              Icons.flag,
-              size: 50,
-              color: AppColors.white,
-            ),
-            const SizedBox(height: AppSpacing.lg),
-            Text(
-              'Our Mission',
-              style: AppTextStyles.h3.copyWith(color: AppColors.white),
+            Row(
+              children: [
+                const Icon(
+                  Icons.flag,
+                  size: 36,
+                  color: AppColors.accentOrange,
+                ),
+                const SizedBox(width: AppSpacing.sm),
+                Text(
+                  'Our Mission',
+                  style: AppTextStyles.h3.copyWith(color: AppColors.accentOrange),
+                ),
+              ],
             ),
             const SizedBox(height: AppSpacing.md),
             Text(
               AppConstants.mission,
-              style: AppTextStyles.bodyLarge.copyWith(color: AppColors.white),
+              style: AppTextStyles.bodyLarge.copyWith(color: AppColors.accentOrange),
             ),
           ],
         ),

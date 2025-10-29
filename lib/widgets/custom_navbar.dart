@@ -2,6 +2,7 @@
 // Top navigation bar with logo, menu items, social icons, and login/register buttons
 
 import 'package:flutter/material.dart';
+import 'dart:async';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../utils/constants.dart';
 import '../utils/responsive_helper.dart';
@@ -25,6 +26,101 @@ class _CustomNavBarState extends State<CustomNavBar> {
   bool _isMobileMenuOpen = false;
   String? _hoveredItem;
   bool _isOurSolutionHovered = false;
+  final LayerLink _ourSolutionLink = LayerLink();
+  OverlayEntry? _ourSolutionOverlay;
+  bool _hoverTrigger = false;
+  bool _hoverOverlay = false;
+  Timer? _hideTimer;
+
+  void _showOurSolutionOverlay() {
+    if (_ourSolutionOverlay != null) return;
+  final overlay = Overlay.maybeOf(context);
+    if (overlay == null) return;
+
+    _ourSolutionOverlay = OverlayEntry(
+      builder: (context) => Positioned.fill(
+        child: Stack(
+          children: [
+            // Dismiss area
+            Positioned.fill(
+              child: GestureDetector(onTap: _hideNow),
+            ),
+            CompositedTransformFollower(
+              link: _ourSolutionLink,
+              targetAnchor: Alignment.bottomLeft,
+              followerAnchor: Alignment.topLeft,
+              offset: const Offset(0, 8),
+              showWhenUnlinked: false,
+              child: MouseRegion(
+                onEnter: (_) {
+                  _hoverOverlay = true;
+                  _isOurSolutionHovered = true;
+                  _hideTimer?.cancel();
+                  setState(() {});
+                },
+                onExit: (_) {
+                  _hoverOverlay = false;
+                  _scheduleHide();
+                },
+                child: Material(
+                  elevation: 6,
+                  borderRadius: BorderRadius.circular(AppRadius.md),
+                  child: Container(
+                    padding: const EdgeInsets.all(AppSpacing.md),
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.circular(AppRadius.md),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        _buildDropdownItem('Features', AppRoutes.features),
+                        const SizedBox(height: AppSpacing.sm),
+                        _buildDropdownItem('FAQs', AppRoutes.faqs),
+                        const SizedBox(height: AppSpacing.sm),
+                        _buildDropdownItem('Why Choose Logistechs', AppRoutes.whyChoose),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+
+    overlay.insert(_ourSolutionOverlay!);
+  }
+
+  void _hideOurSolutionOverlay() {
+    _ourSolutionOverlay?.remove();
+    _ourSolutionOverlay = null;
+    if (mounted) setState(() => _isOurSolutionHovered = false);
+  }
+
+  void _hideNow() {
+    _hideTimer?.cancel();
+    _hoverTrigger = false;
+    _hoverOverlay = false;
+    _hideOurSolutionOverlay();
+  }
+
+  void _scheduleHide() {
+    _hideTimer?.cancel();
+    _hideTimer = Timer(const Duration(milliseconds: 150), () {
+      if (!_hoverTrigger && !_hoverOverlay) {
+        _hideOurSolutionOverlay();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _hideOurSolutionOverlay();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +211,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
           children: [
             Image.asset(
               'assets/images/logistechs_icon.png',
-              height: 36,
+              height: 72,
               fit: BoxFit.contain,
             ),
           ],
@@ -164,62 +260,42 @@ class _CustomNavBarState extends State<CustomNavBar> {
   }
 
   Widget _buildOurSolutionDropdown() {
-    return MouseRegion(
-      onEnter: (_) => setState(() => _isOurSolutionHovered = true),
-      onExit: (_) => setState(() => _isOurSolutionHovered = false),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          MouseRegion(
-            cursor: SystemMouseCursors.click,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  'Our Solution',
-                  style: AppTextStyles.navLink.copyWith(
-                    color: _isOurSolutionHovered 
-                        ? AppColors.primaryBlue 
-                        : AppColors.textDark,
-                  ),
-                ),
-                Icon(
-                  _isOurSolutionHovered 
-                      ? Icons.keyboard_arrow_up 
-                      : Icons.keyboard_arrow_down,
-                  color: _isOurSolutionHovered 
-                      ? AppColors.primaryBlue 
-                      : AppColors.textDark,
-                  size: 20,
-                ),
-              ],
-            ),
-          ),
-          if (_isOurSolutionHovered)
-            Material(
-              elevation: 4,
-              borderRadius: BorderRadius.circular(AppRadius.md),
-              child: Container(
-                margin: const EdgeInsets.only(top: AppSpacing.md),
-                padding: const EdgeInsets.all(AppSpacing.md),
-                decoration: BoxDecoration(
-                  color: AppColors.white,
-                  borderRadius: BorderRadius.circular(AppRadius.md),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    _buildDropdownItem('Features', AppRoutes.features),
-                    const SizedBox(height: AppSpacing.sm),
-                    _buildDropdownItem('FAQs', AppRoutes.faqs),
-                    const SizedBox(height: AppSpacing.sm),
-                    _buildDropdownItem('Why Choose Logistechs', AppRoutes.whyChoose),
-                  ],
-                ),
+    return CompositedTransformTarget(
+      link: _ourSolutionLink,
+      child: MouseRegion(
+        onEnter: (_) {
+          _hoverTrigger = true;
+          _isOurSolutionHovered = true;
+          _hideTimer?.cancel();
+          _showOurSolutionOverlay();
+          setState(() {});
+        },
+        onExit: (_) {
+          _hoverTrigger = false;
+          _scheduleHide();
+        },
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Our Solution',
+              style: AppTextStyles.navLink.copyWith(
+                color: _isOurSolutionHovered 
+                    ? AppColors.primaryBlue 
+                    : AppColors.textDark,
               ),
             ),
-        ],
+            Icon(
+              _isOurSolutionHovered 
+                  ? Icons.keyboard_arrow_up 
+                  : Icons.keyboard_arrow_down,
+              color: _isOurSolutionHovered 
+                  ? AppColors.primaryBlue 
+                  : AppColors.textDark,
+              size: 20,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -229,7 +305,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
         onTap: () {
-          setState(() => _isOurSolutionHovered = false);
+          _hideNow();
           Navigator.pushNamed(context, route);
         },
         child: Container(

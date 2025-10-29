@@ -31,7 +31,8 @@ class _FeaturesPageState extends State<FeaturesPage> {
             const CustomNavBar(currentRoute: AppRoutes.features),
             PageBanner(
               title: 'Features',
-              alignRight: true,
+              alignRight: false,
+              centered: true,
               description: 'Whilst most Road Freight software solutions exist in siloed, digital spaces, '
                   'LOGISTECHS solution represents an integrated, centralized platform that is powered by '
                   'core elements from Transport Management, Resource Planning, Route Optimization and '
@@ -232,19 +233,10 @@ class _FeaturesPageState extends State<FeaturesPage> {
     final imageWidget = FadeInUp(
       duration: AppConstants.longAnimation,
       delay: Duration(milliseconds: delay),
-      child: Container(
-        height: 300,
-        decoration: BoxDecoration(
-          color: AppColors.primaryBlue.withValues(alpha: 0.1),
-          borderRadius: BorderRadius.circular(AppRadius.lg),
-        ),
-        child: Center(
-          child: Icon(
-            icon,
-            size: 100,
-            color: AppColors.primaryBlue,
-          ),
-        ),
+      child: Icon(
+        icon,
+        size: 120,
+        color: Colors.black,
       ),
     );
     
@@ -279,17 +271,17 @@ class _FeaturesPageState extends State<FeaturesPage> {
     }
     
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: imageLeft
           ? [
-              Expanded(child: imageWidget),
+              SizedBox(width: 120, child: Align(alignment: Alignment.topCenter, child: imageWidget)),
               const SizedBox(width: AppSpacing.xxxl),
               Expanded(child: textWidget),
             ]
           : [
               Expanded(child: textWidget),
               const SizedBox(width: AppSpacing.xxxl),
-              Expanded(child: imageWidget),
+              SizedBox(width: 120, child: Align(alignment: Alignment.topCenter, child: imageWidget)),
             ],
     );
   }
@@ -355,7 +347,9 @@ class _FeaturesPageState extends State<FeaturesPage> {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: ResponsiveHelper.getGridColumns(context),
+              crossAxisCount: ResponsiveHelper.isMobile(context)
+                  ? 1
+                  : (ResponsiveHelper.isTablet(context) ? 2 : 4),
               mainAxisSpacing: AppSpacing.xl,
               crossAxisSpacing: AppSpacing.xl,
               childAspectRatio: 1.2,
@@ -370,12 +364,12 @@ class _FeaturesPageState extends State<FeaturesPage> {
                   padding: const EdgeInsets.all(AppSpacing.lg),
                   decoration: BoxDecoration(
                     color: AppColors.white,
-                    borderRadius: BorderRadius.circular(AppRadius.lg),
+                    borderRadius: BorderRadius.circular(AppRadius.xxl),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.1),
-                        blurRadius: 20,
-                        offset: const Offset(0, 10),
+                        color: Colors.black.withValues(alpha: 0.15),
+                        blurRadius: 30,
+                        offset: const Offset(0, 12),
                       ),
                     ],
                   ),
@@ -383,7 +377,7 @@ class _FeaturesPageState extends State<FeaturesPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Icon(m['icon'] as IconData, size: 40, color: AppColors.primaryBlue),
+                      Icon(m['icon'] as IconData, size: 40, color: Colors.black),
                       const SizedBox(height: AppSpacing.md),
                       Text(m['title'] as String, style: AppTextStyles.h5, textAlign: TextAlign.center),
                       const SizedBox(height: AppSpacing.sm),

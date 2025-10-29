@@ -13,6 +13,7 @@ class PageBanner extends StatelessWidget {
   final Widget? actionButton;
   final bool alignRight;
   final String? backgroundImage;
+  final bool centered;
   
   const PageBanner({
     super.key,
@@ -22,6 +23,7 @@ class PageBanner extends StatelessWidget {
     this.actionButton,
     this.alignRight = false,
     this.backgroundImage,
+    this.centered = false,
   });
 
   @override
@@ -45,17 +47,21 @@ class PageBanner extends StatelessWidget {
             : null,
       ),
       child: Align(
-        alignment: alignRight && !isMobile 
-            ? Alignment.centerRight 
-            : Alignment.centerLeft,
+        alignment: centered
+            ? Alignment.center
+            : (alignRight && !isMobile 
+                ? Alignment.centerRight 
+                : Alignment.centerLeft),
         child: ConstrainedBox(
           constraints: BoxConstraints(
             maxWidth: isMobile ? double.infinity : 600,
           ),
           child: Column(
-            crossAxisAlignment: alignRight && !isMobile
-                ? CrossAxisAlignment.end
-                : CrossAxisAlignment.start,
+            crossAxisAlignment: centered
+                ? CrossAxisAlignment.center
+                : (alignRight && !isMobile
+                    ? CrossAxisAlignment.end
+                    : CrossAxisAlignment.start),
             mainAxisSize: MainAxisSize.min,
             children: [
               if (subtitle != null) ...[
@@ -67,9 +73,11 @@ class PageBanner extends StatelessWidget {
                       color: AppColors.primaryBlue,
                       fontWeight: FontWeight.w600,
                     ),
-                    textAlign: alignRight && !isMobile 
-                        ? TextAlign.right 
-                        : TextAlign.left,
+                    textAlign: centered
+                        ? TextAlign.center
+                        : (alignRight && !isMobile 
+                            ? TextAlign.right 
+                            : TextAlign.left),
                   ),
                 ),
                 const SizedBox(height: AppSpacing.md),
@@ -80,9 +88,11 @@ class PageBanner extends StatelessWidget {
                 child: Text(
                   title,
                   style: isMobile ? AppTextStyles.h3 : AppTextStyles.h2,
-                  textAlign: alignRight && !isMobile 
-                      ? TextAlign.right 
-                      : TextAlign.left,
+                  textAlign: centered
+                      ? TextAlign.center
+                      : (alignRight && !isMobile 
+                          ? TextAlign.right 
+                          : TextAlign.left),
                 ),
               ),
               if (description != null) ...[
@@ -93,9 +103,11 @@ class PageBanner extends StatelessWidget {
                   child: Text(
                     description!,
                     style: AppTextStyles.bodyLarge,
-                    textAlign: alignRight && !isMobile 
-                        ? TextAlign.right 
-                        : TextAlign.left,
+                    textAlign: centered
+                        ? TextAlign.center
+                        : (alignRight && !isMobile 
+                            ? TextAlign.right 
+                            : TextAlign.left),
                   ),
                 ),
               ],

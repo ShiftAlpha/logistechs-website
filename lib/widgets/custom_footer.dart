@@ -18,7 +18,7 @@ class CustomFooter extends StatelessWidget {
     final isDesktop = ResponsiveHelper.isDesktop(context);
     
     return Container(
-      color: AppColors.primaryDark,
+      color: Colors.black,
       padding: EdgeInsets.all(
         ResponsiveHelper.getHorizontalPadding(context),
       ),
@@ -201,25 +201,25 @@ class CustomFooter extends StatelessWidget {
           children: [
             SocialIconButton(
               icon: FontAwesomeIcons.facebookF,
-              color: AppColors.facebook,
+              color: AppColors.white,
               onTap: () => UrlHelper.launchSocialMedia(AppConstants.facebookUrl),
             ),
             const SizedBox(width: AppSpacing.sm),
             SocialIconButton(
               icon: FontAwesomeIcons.twitter,
-              color: AppColors.twitter,
+              color: AppColors.white,
               onTap: () => UrlHelper.launchSocialMedia(AppConstants.twitterUrl),
             ),
             const SizedBox(width: AppSpacing.sm),
             SocialIconButton(
               icon: FontAwesomeIcons.instagram,
-              color: AppColors.instagram,
+              color: AppColors.white,
               onTap: () => UrlHelper.launchSocialMedia(AppConstants.instagramUrl),
             ),
             const SizedBox(width: AppSpacing.sm),
             SocialIconButton(
               icon: FontAwesomeIcons.linkedin,
-              color: AppColors.linkedin,
+              color: AppColors.white,
               onTap: () => UrlHelper.launchSocialMedia(AppConstants.linkedinUrl),
             ),
           ],
@@ -233,17 +233,20 @@ class CustomFooter extends StatelessWidget {
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
         onTap: () {
-          Scrollable.ensureVisible(
-            context,
-            duration: const Duration(milliseconds: 800),
-            curve: Curves.easeInOut,
-          );
+          final position = Scrollable.maybeOf(context)?.position;
+          if (position != null) {
+            position.animateTo(
+              0,
+              duration: const Duration(milliseconds: 800),
+              curve: Curves.easeInOut,
+            );
+          }
         },
         child: Container(
           width: 50,
           height: 50,
           decoration: BoxDecoration(
-            color: AppColors.primaryBlue,
+            color: Colors.transparent,
             borderRadius: BorderRadius.circular(AppRadius.round),
           ),
           child: const Icon(

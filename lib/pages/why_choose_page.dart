@@ -41,7 +41,7 @@ class WhyChoosePage extends StatelessWidget {
         vertical: ResponsiveHelper.getVerticalSpacing(context),
       ),
       decoration: const BoxDecoration(
-        color: AppColors.lightGrey,
+        color: AppColors.white,
       ),
       child: isMobile
           ? Column(
@@ -108,7 +108,7 @@ class WhyChoosePage extends StatelessWidget {
             const Icon(
               Icons.download,
               size: 60,
-              color: AppColors.primaryBlue,
+              color: Colors.black,
             ),
             const SizedBox(height: AppSpacing.md),
             Text(
@@ -130,7 +130,7 @@ class WhyChoosePage extends StatelessWidget {
                   style: AppTextStyles.button,
                 ),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primaryBlue,
+                  backgroundColor: Colors.black,
                   padding: const EdgeInsets.symmetric(
                     horizontal: AppSpacing.xl,
                     vertical: AppSpacing.md,
@@ -234,37 +234,22 @@ class WhyChoosePage extends StatelessWidget {
         padding: const EdgeInsets.all(AppSpacing.lg),
         decoration: BoxDecoration(
           color: AppColors.white,
-          borderRadius: BorderRadius.circular(AppRadius.lg),
+          borderRadius: BorderRadius.circular(AppRadius.xxl),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.1),
-              blurRadius: 20,
-              offset: const Offset(0, 10),
+              color: Colors.black.withValues(alpha: 0.15),
+              blurRadius: 30,
+              offset: const Offset(0, 12),
             ),
           ],
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              width: 70,
-              height: 70,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    AppColors.primaryBlue,
-                    AppColors.primaryBlue.withValues(alpha: 0.7),
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-                borderRadius: BorderRadius.circular(AppRadius.round),
-              ),
-              child: Icon(
-                icon,
-                size: 35,
-                color: AppColors.white,
-              ),
+            Icon(
+              icon,
+              size: 48,
+              color: Colors.black,
             ),
             const SizedBox(height: AppSpacing.md),
             Text(

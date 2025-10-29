@@ -8,14 +8,14 @@ import 'package:google_fonts/google_fonts.dart';
 /// Near-white background with professional color scheme
 class AppColors {
   // Primary Colors
-  static const Color primaryBlue = Color(0xFF1E3A8A);
-  static const Color primaryDark = Color(0xFF0F172A);
+  static const Color primaryBlue = Color(0xFF000000);
+  static const Color primaryDark = Color(0xFF000000);
   static const Color accentOrange = Color(0xFFFF6B35);
   
   // Background Colors
-  static const Color nearWhiteBackground = Color(0xFFFAFAFA);
+  static const Color nearWhiteBackground = Color(0xFFFFFFFF);
   static const Color white = Color(0xFFFFFFFF);
-  static const Color lightGrey = Color(0xFFF5F5F5);
+  static const Color lightGrey = Color(0xFFFFFFFF);
   
   // Text Colors
   static const Color textDark = Color(0xFF1F2937);

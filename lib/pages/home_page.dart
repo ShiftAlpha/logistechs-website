@@ -59,36 +59,110 @@ class _HomePageState extends State<HomePage> {
         horizontal: ResponsiveHelper.getHorizontalPadding(context),
         vertical: ResponsiveHelper.getVerticalSpacing(context) * 1.5,
       ),
-      child: custom.AnimatedContainer(
-        isTransparent: true,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            FadeInLeft(
-              duration: AppConstants.longAnimation,
-              child: Text(
-                'Welcome to Logistechs',
-                style: isMobile ? AppTextStyles.h2 : AppTextStyles.h1,
+      child: isMobile
+          ? custom.AnimatedContainer(
+              isTransparent: true,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  FadeInLeft(
+                    duration: AppConstants.longAnimation,
+                    child: Text(
+                      'Logistechs',
+                      style: AppTextStyles.h2,
+                    ),
+                  ),
+                  const SizedBox(height: AppSpacing.xl),
+                  FadeInLeft(
+                    duration: AppConstants.longAnimation,
+                    delay: const Duration(milliseconds: 300),
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 800),
+                      child: Text(
+                        'LOGISTECHS is your end‑to‑end road freight platform built with modern Flutter apps and a secure cloud backbone. '
+                        'Unify Transport Management, Resource Planning, Route Optimization and Fleet Maintenance—then extend it with '
+                        'Driver and Customer apps, live dashboards, custom alerts and deep integrations (accounting, trackers and more). '
+                        'Deploy on a secured private cloud or on‑prem, keep full data ownership, and scale at your pace.',
+                        style: AppTextStyles.bodyLarge,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ),
-            const SizedBox(height: AppSpacing.xl),
-            FadeInLeft(
-              duration: AppConstants.longAnimation,
-              delay: const Duration(milliseconds: 300),
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 800),
-                child: Text(
-                  'LOGISTECHS is your end‑to‑end road freight platform built with modern Flutter apps and a secure cloud backbone. '
-                  'Unify Transport Management, Resource Planning, Route Optimization and Fleet Maintenance—then extend it with '
-                  'Driver and Customer apps, live dashboards, custom alerts and deep integrations (accounting, trackers and more). '
-                  'Deploy on a secured private cloud or on‑prem, keep full data ownership, and scale at your pace.',
-                  style: AppTextStyles.bodyLarge,
+            )
+          : Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                  // Left text column
+                  Expanded(
+                    child: custom.AnimatedContainer(
+                      isTransparent: true,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          FadeInLeft(
+                            duration: AppConstants.longAnimation,
+                            child: Text(
+                            'LOGISTECHS',
+                              style: AppTextStyles.h1,
+                            ),
+                          ),
+                          const SizedBox(height: AppSpacing.xl),
+                          FadeInLeft(
+                            duration: AppConstants.longAnimation,
+                            delay: const Duration(milliseconds: 300),
+                            child: ConstrainedBox(
+                              constraints: const BoxConstraints(maxWidth: 800),
+                              child: Text(
+                                'LOGISTECHS is your end‑to‑end road freight platform built with modern Flutter apps and a secure cloud backbone. '
+                                'Unify Transport Management, Resource Planning, Route Optimization and Fleet Maintenance—then extend it with '
+                                'Driver and Customer apps, live dashboards, custom alerts and deep integrations (accounting, trackers and more). '
+                                'Deploy on a secured private cloud or on‑prem, keep full data ownership, and scale at your pace.',
+                                style: AppTextStyles.bodyLarge,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: AppSpacing.xxxl),
+                  // Right logo column - height matches text column (stretched by IntrinsicHeight)
+                ConstrainedBox(
+                  constraints: const BoxConstraints(minWidth: 286, maxWidth: 416),
+                  child: custom.AnimatedContainer(
+                    isTransparent: true,
+                    child: Transform.translate(
+                      offset: const Offset(0, -20),
+                      child: Container(
+                      decoration: BoxDecoration(
+                        color: AppColors.white,
+                        borderRadius: BorderRadius.circular(AppRadius.lg),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withValues(alpha: 0.12),
+                            blurRadius: 28,
+                            offset: const Offset(0, 12),
+                          ),
+                        ],
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(AppSpacing.lg),
+                        child: Transform.scale(
+                          scale: 1.3,
+                          child: FittedBox(
+                            fit: BoxFit.contain,
+                            child: Image.asset('assets/images/logistechs_icon.png'),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ),
+              ],
             ),
-          ],
-        ),
-      ),
     );
   }
 
@@ -104,7 +178,7 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         children: [
           const SectionTitle(
-            title: 'Logistechs Benefits',
+            title: 'Benefits',
             subtitle: 'Discover how we transform your logistics operations',
           ),
           SizedBox(height: ResponsiveHelper.getVerticalSpacing(context)),
