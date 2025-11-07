@@ -76,7 +76,7 @@ git push origin master
 ### What the Workflow Does
 
 1. **Checkout code** - Gets latest code from repository
-2. **Set up Flutter** - Installs Flutter 3.24.5 stable
+2. **Set up Flutter** - Installs Flutter 3.27.1 stable (with Dart 3.7.0+)
 3. **Install dependencies** - Runs `flutter pub get`
 4. **Build web** - Compiles Flutter app to optimized web build
 5. **Deploy to Firebase** - Uploads build to Firebase Hosting
