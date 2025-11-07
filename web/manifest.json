@@ -1,11 +1,11 @@
 {
-    "name": "logistechs_website",
-    "short_name": "logistechs_website",
+    "name": "Logistechs - Logistics Management System",
+    "short_name": "Logistechs",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#004AAD",
+    "theme_color": "#004AAD",
+    "description": "Complete Logistics Management System for African Road Freight. Hardware-integrated scanning, silent printing, GPS-verified ePODs, and real-time tracking.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

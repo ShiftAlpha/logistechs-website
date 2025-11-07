@@ -43,3 +43,17 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Firebase
+.firebase/
+firebase-debug.log
+firebase-debug.*.log
+**/google-services.json
+**/GoogleService-Info.plist
+**/*-firebase-adminsdk-*.json
+
+# Secrets and credentials (NEVER commit these!)
+**/*service-account*.json
+**/*credentials*.json
+.env
+.env.local

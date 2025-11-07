@@ -4,10 +4,13 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import '../utils/constants.dart';
 import '../utils/responsive_helper.dart';
 import '../utils/routes.dart';
 import '../utils/url_helper.dart';
+import '../utils/currency_converter.dart';
+import '../providers/currency_provider.dart';
 import 'social_icon_button.dart';
 
 class CustomNavBar extends StatefulWidget {
@@ -149,19 +152,27 @@ class _CustomNavBarState extends State<CustomNavBar> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _buildNavItem('Home', AppRoutes.home),
-              const SizedBox(width: AppSpacing.xl),
+              const SizedBox(width: AppSpacing.lg),
               _buildNavItem('Company', AppRoutes.company),
-              const SizedBox(width: AppSpacing.xl),
+              const SizedBox(width: AppSpacing.lg),
               _buildOurSolutionDropdown(),
-              const SizedBox(width: AppSpacing.xl),
+              const SizedBox(width: AppSpacing.lg),
+              _buildNavItem('Pricing', AppRoutes.pricing),
+              const SizedBox(width: AppSpacing.lg),
+              _buildNavItem('Roadmap', AppRoutes.timeline),
+              const SizedBox(width: AppSpacing.lg),
+              _buildNavItem('Track', AppRoutes.track),
+              const SizedBox(width: AppSpacing.lg),
               _buildNavItem('Contact Us', AppRoutes.contact),
             ],
           ),
         ),
         
-        // Right side: Social Icons and Login/Register
+        // Right side: Currency Selector, Social Icons and Login/Register
         Row(
           children: [
+            _buildCurrencySelector(),
+            const SizedBox(width: AppSpacing.md),
             _buildSocialIcons(),
             const SizedBox(width: AppSpacing.lg),
             _buildLoginRegister(),
@@ -180,6 +191,8 @@ class _CustomNavBarState extends State<CustomNavBar> {
             _buildLogo(),
             Row(
               children: [
+                _buildCurrencySelector(),
+                const SizedBox(width: AppSpacing.sm),
                 _buildLoginRegister(),
                 IconButton(
                   icon: Icon(
@@ -390,6 +403,52 @@ class _CustomNavBarState extends State<CustomNavBar> {
     );
   }
 
+  Widget _buildCurrencySelector() {
+    return Consumer<CurrencyProvider>(
+      builder: (context, currencyProvider, child) {
+        return Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          decoration: BoxDecoration(
+            border: Border.all(color: AppColors.primaryBlue, width: 1),
+            borderRadius: BorderRadius.circular(6),
+          ),
+          child: DropdownButtonHideUnderline(
+            child: DropdownButton<String>(
+              value: currencyProvider.selectedCurrency,
+              isDense: true,
+              icon: Icon(Icons.arrow_drop_down, size: 16, color: AppColors.primaryBlue),
+              style: AppTextStyles.bodySmall.copyWith(
+                color: AppColors.primaryBlue,
+                fontWeight: FontWeight.w600,
+              ),
+              items: CurrencyConverter.getSupportedCurrencies().map((String currency) {
+                return DropdownMenuItem<String>(
+                  value: currency,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        CurrencyConverter.getSymbol(currency),
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(width: 4),
+                      Text(currency),
+                    ],
+                  ),
+                );
+              }).toList(),
+              onChanged: (String? newCurrency) {
+                if (newCurrency != null) {
+                  currencyProvider.setCurrency(newCurrency);
+                }
+              },
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   Widget _buildMobileMenu() {
     return Container(
       margin: const EdgeInsets.only(top: AppSpacing.md),
@@ -406,7 +465,15 @@ class _CustomNavBarState extends State<CustomNavBar> {
           _buildMobileMenuItem('Features', AppRoutes.features),
           _buildMobileMenuItem('FAQs', AppRoutes.faqs),
           _buildMobileMenuItem('Why Choose Logistechs', AppRoutes.whyChoose),
+          _buildMobileMenuItem('Pricing', AppRoutes.pricing),
+          _buildMobileMenuItem('Roadmap', AppRoutes.timeline),
+          _buildMobileMenuItem('Track', AppRoutes.track),
           _buildMobileMenuItem('Contact Us', AppRoutes.contact),
+          const Divider(),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
+            child: _buildCurrencySelector(),
+          ),
           const Divider(),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

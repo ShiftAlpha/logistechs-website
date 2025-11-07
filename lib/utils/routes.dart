@@ -8,6 +8,10 @@ import '../pages/features_page.dart';
 import '../pages/faqs_page.dart';
 import '../pages/contact_page.dart';
 import '../pages/why_choose_page.dart';
+import '../pages/track_page.dart';
+import '../pages/pricing_page.dart';
+import '../pages/checkout_page.dart';
+import '../pages/timeline_page.dart';
 
 class AppRoutes {
   // Route Names
@@ -17,6 +21,10 @@ class AppRoutes {
   static const String faqs = '/faqs';
   static const String contact = '/contact';
   static const String whyChoose = '/why-choose';
+  static const String track = '/track';
+  static const String pricing = '/pricing';
+  static const String checkout = '/checkout';
+  static const String timeline = '/roadmap';
   
   /// Generate routes based on route settings
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -33,6 +41,14 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const ContactPage());
       case whyChoose:
         return MaterialPageRoute(builder: (_) => const WhyChoosePage());
+      case track:
+        return MaterialPageRoute(builder: (_) => const TrackPage());
+      case pricing:
+        return MaterialPageRoute(builder: (_) => const PricingPage());
+      case checkout:
+        return MaterialPageRoute(builder: (_) => const CheckoutPage());
+      case timeline:
+        return MaterialPageRoute(builder: (_) => const TimelinePage());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
@@ -59,6 +75,12 @@ class AppRoutes {
         return 'Contact Us';
       case whyChoose:
         return 'Why Choose Logistechs';
+      case track:
+        return 'Track';
+      case pricing:
+        return 'Pricing';
+      case checkout:
+        return 'Checkout';
       default:
         return '';
     }

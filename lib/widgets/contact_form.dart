@@ -2,6 +2,9 @@
 // Reusable contact form with validation and reCAPTCHA placeholder
 
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../utils/constants.dart';
 import '../utils/responsive_helper.dart';
 
@@ -49,27 +52,84 @@ class _ContactFormState extends State<ContactForm> {
 
     setState(() => _isSubmitting = true);
     
-    // Simulate form submission
-    await Future.delayed(const Duration(seconds: 2));
-    
-    if (mounted) {
-      setState(() => _isSubmitting = false);
-      
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Thank you! Your message has been sent.'),
-          backgroundColor: AppColors.success,
-        ),
-      );
-      
-      // Clear form
-      _formKey.currentState!.reset();
-      _nameController.clear();
-      _surnameController.clear();
-      _emailController.clear();
-      _subjectController.clear();
-      _messageController.clear();
-      setState(() => _isNotRobot = false);
+    try {
+      // Prepare form data
+      final formData = {
+        'name': _nameController.text,
+        'surname': _surnameController.text,
+        'email': _emailController.text,
+        'subject': _subjectController.text,
+        'message': _messageController.text,
+        'timestamp': FieldValue.serverTimestamp(),
+        'status': 'new',
+      };
+
+      // BACKUP: Save to Firestore first (always succeeds)
+      try {
+        await FirebaseFirestore.instance
+            .collection('contact_submissions')
+            .add(formData);
+      } catch (firestoreError) {
+        // Log but don't fail - we still want to try email
+        debugPrint('Firestore backup failed: $firestoreError');
+      }
+
+      // Call Firebase Cloud Function to send email
+      // Replace with your actual Cloud Function URL
+      const String cloudFunctionUrl =
+          'https://us-central1-logistechs-app.cloudfunctions.net/sendContactFormEmail';
+
+      final response = await http
+          .post(
+            Uri.parse(cloudFunctionUrl),
+            headers: {'Content-Type': 'application/json'},
+            body: jsonEncode(formData),
+          )
+          .timeout(const Duration(seconds: 30));
+
+      if (mounted) {
+        setState(() => _isSubmitting = false);
+
+        if (response.statusCode == 200) {
+          // Success
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Thank you! Your message has been sent.'),
+              backgroundColor: AppColors.success,
+            ),
+          );
+
+          // Clear form
+          _formKey.currentState!.reset();
+          _nameController.clear();
+          _surnameController.clear();
+          _emailController.clear();
+          _subjectController.clear();
+          _messageController.clear();
+          setState(() => _isNotRobot = false);
+        } else {
+          // Error
+          final errorData = jsonDecode(response.body);
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                errorData['error'] ?? 'Failed to send message. Please try again.',
+              ),
+              backgroundColor: AppColors.error,
+            ),
+          );
+        }
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() => _isSubmitting = false);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error: ${e.toString()}'),
+            backgroundColor: AppColors.error,
+          ),
+        );
+      }
     }
   }
 

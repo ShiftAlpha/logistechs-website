@@ -138,8 +138,8 @@ class AppRadius {
 /// App Constants
 class AppConstants {
   // Contact Information
-  static const String phone = '+27 64 750 8514';
-  static const String email = 'ask@logistechs.com';
+  static const String phone = '+27 62643350';
+  static const String email = 'asklogistechs@mail.com';
   static const String address = 'Head office: RSA';
   static const String detailedAddress = '431 The William, Deinfern, Johannesburg';
   

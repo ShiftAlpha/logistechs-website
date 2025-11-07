@@ -52,61 +52,53 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildWelcomeSection(BuildContext context) {
     final isMobile = ResponsiveHelper.isMobile(context);
-    
+
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
         horizontal: ResponsiveHelper.getHorizontalPadding(context),
         vertical: ResponsiveHelper.getVerticalSpacing(context) * 1.5,
       ),
-      child: isMobile
-          ? custom.AnimatedContainer(
-              isTransparent: true,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  FadeInLeft(
-                    duration: AppConstants.longAnimation,
-                    child: Text(
-                      'Logistechs',
-                      style: AppTextStyles.h2,
+      child:
+          isMobile
+              ? custom.AnimatedContainer(
+                isTransparent: true,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    FadeInLeft(
+                      duration: AppConstants.longAnimation,
+                      child: Text('Logistechs', style: AppTextStyles.h2),
                     ),
-                  ),
-                  const SizedBox(height: AppSpacing.xl),
-                  FadeInLeft(
-                    duration: AppConstants.longAnimation,
-                    delay: const Duration(milliseconds: 300),
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 800),
-                      child: Text(
-                        'LOGISTECHS is your end‑to‑end road freight platform built with modern Flutter apps and a secure cloud backbone. '
-                        'Unify Transport Management, Resource Planning, Route Optimization and Fleet Maintenance—then extend it with '
-                        'Driver and Customer apps, live dashboards, custom alerts and deep integrations (accounting, trackers and more). '
-                        'Deploy on a secured private cloud or on‑prem, keep full data ownership, and scale at your pace.',
-                        style: AppTextStyles.bodyLarge,
+                    const SizedBox(height: AppSpacing.xl),
+                    FadeInLeft(
+                      duration: AppConstants.longAnimation,
+                      delay: const Duration(milliseconds: 300),
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(maxWidth: 800),
+                        child: Text(
+                          'POWERING AFRICAN LOGISTICS',
+                          style: AppTextStyles.bodyLarge,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            )
-          : Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+                  ],
+                ),
+              )
+              : Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
                   // Left text column
                   Expanded(
                     child: custom.AnimatedContainer(
                       isTransparent: true,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           FadeInLeft(
                             duration: AppConstants.longAnimation,
-                            child: Text(
-                            'LOGISTECHS',
-                              style: AppTextStyles.h1,
-                            ),
+                            child: Text('LOGISTECHS', style: AppTextStyles.h1),
                           ),
                           const SizedBox(height: AppSpacing.xl),
                           FadeInLeft(
@@ -115,10 +107,7 @@ class _HomePageState extends State<HomePage> {
                             child: ConstrainedBox(
                               constraints: const BoxConstraints(maxWidth: 800),
                               child: Text(
-                                'LOGISTECHS is your end‑to‑end road freight platform built with modern Flutter apps and a secure cloud backbone. '
-                                'Unify Transport Management, Resource Planning, Route Optimization and Fleet Maintenance—then extend it with '
-                                'Driver and Customer apps, live dashboards, custom alerts and deep integrations (accounting, trackers and more). '
-                                'Deploy on a secured private cloud or on‑prem, keep full data ownership, and scale at your pace.',
+                                'POWERING AFRICAN LOGISTICS',
                                 style: AppTextStyles.bodyLarge,
                               ),
                             ),
@@ -129,47 +118,52 @@ class _HomePageState extends State<HomePage> {
                   ),
                   const SizedBox(width: AppSpacing.xxxl),
                   // Right logo column - height matches text column (stretched by IntrinsicHeight)
-                ConstrainedBox(
-                  constraints: const BoxConstraints(minWidth: 286, maxWidth: 416),
-                  child: custom.AnimatedContainer(
-                    isTransparent: true,
-                    child: Transform.translate(
-                      offset: const Offset(0, -20),
-                      child: Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.white,
-                        borderRadius: BorderRadius.circular(AppRadius.lg),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withValues(alpha: 0.12),
-                            blurRadius: 28,
-                            offset: const Offset(0, 12),
+                  ConstrainedBox(
+                    constraints: const BoxConstraints(
+                      minWidth: 286,
+                      maxWidth: 416,
+                    ),
+                    child: custom.AnimatedContainer(
+                      isTransparent: true,
+                      child: Transform.translate(
+                        offset: const Offset(0, -20),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: AppColors.white,
+                            borderRadius: BorderRadius.circular(AppRadius.lg),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withValues(alpha: 0.12),
+                                blurRadius: 28,
+                                offset: const Offset(0, 12),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(AppSpacing.lg),
-                        child: Transform.scale(
-                          scale: 1.3,
-                          child: FittedBox(
-                            fit: BoxFit.contain,
-                            child: Image.asset('assets/images/logistechs_icon.png'),
+                          child: Padding(
+                            padding: const EdgeInsets.all(AppSpacing.lg),
+                            child: Transform.scale(
+                              scale: 1.3,
+                              child: FittedBox(
+                                fit: BoxFit.contain,
+                                child: Image.asset(
+                                  'assets/images/logistechs_icon.png',
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                ),
+                ],
               ),
-              ],
-            ),
     );
   }
 
   Widget _buildBenefitsSection(BuildContext context) {
     final isMobile = ResponsiveHelper.isMobile(context);
     final isTablet = ResponsiveHelper.isTablet(context);
-    
+
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
@@ -185,7 +179,12 @@ class _HomePageState extends State<HomePage> {
           GridView.count(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            crossAxisCount: isMobile ? 1 : isTablet ? 2 : 3,
+            crossAxisCount:
+                isMobile
+                    ? 1
+                    : isTablet
+                    ? 2
+                    : 3,
             mainAxisSpacing: AppSpacing.xl,
             crossAxisSpacing: AppSpacing.xl,
             childAspectRatio: isMobile ? 1.5 : 1.2,
@@ -193,37 +192,43 @@ class _HomePageState extends State<HomePage> {
               _buildBenefitCard(
                 icon: Icons.local_shipping,
                 title: 'Transport Management',
-                description: 'Digitize dispatch, consolidate loads, track delivery milestones and PODs in one place.',
+                description:
+                    'Digitize dispatch, consolidate loads, track delivery milestones and PODs in one place.',
                 delay: 0,
               ),
               _buildBenefitCard(
                 icon: Icons.event_available,
                 title: 'Resource Planning',
-                description: 'Plan drivers, vehicles and depots with capacity views and utilization insights.',
+                description:
+                    'Plan drivers, vehicles and depots with capacity views and utilization insights.',
                 delay: 200,
               ),
               _buildBenefitCard(
                 icon: Icons.alt_route,
                 title: 'Route Optimization',
-                description: 'Optimize routes and reduce empty miles with smart routing and geo-visibility.',
+                description:
+                    'Optimize routes and reduce empty miles with smart routing and geo-visibility.',
                 delay: 400,
               ),
               _buildBenefitCard(
                 icon: Icons.directions_car,
                 title: 'Fleet & Maintenance',
-                description: 'Track fleet health, service schedules and costs to keep assets road-ready.',
+                description:
+                    'Track fleet health, service schedules and costs to keep assets road-ready.',
                 delay: 600,
               ),
               _buildBenefitCard(
                 icon: Icons.verified_user,
                 title: 'Compliance & SHEQ',
-                description: 'Digitize inspections, incidents and audits to stay compliant and safe.',
+                description:
+                    'Digitize inspections, incidents and audits to stay compliant and safe.',
                 delay: 800,
               ),
               _buildBenefitCard(
                 icon: Icons.person_outline,
                 title: 'Customer Portal',
-                description: 'Give customers live ETA, tracking and proof-of-delivery for a seamless experience.',
+                description:
+                    'Give customers live ETA, tracking and proof-of-delivery for a seamless experience.',
                 delay: 1000,
               ),
             ],
@@ -265,18 +270,10 @@ class _HomePageState extends State<HomePage> {
                 color: AppColors.primaryBlue.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(AppRadius.round),
               ),
-              child: Icon(
-                icon,
-                size: 30,
-                color: AppColors.primaryBlue,
-              ),
+              child: Icon(icon, size: 30, color: AppColors.primaryBlue),
             ),
             const SizedBox(height: AppSpacing.md),
-            Text(
-              title,
-              style: AppTextStyles.h5,
-              textAlign: TextAlign.center,
-            ),
+            Text(title, style: AppTextStyles.h5, textAlign: TextAlign.center),
             const SizedBox(height: AppSpacing.sm),
             Text(
               description,
@@ -291,7 +288,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildDemoSection(BuildContext context) {
     final isMobile = ResponsiveHelper.isMobile(context);
-    
+
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
