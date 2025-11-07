@@ -175,7 +175,7 @@ class _TimelinePageState extends State<TimelinePage> {
             ),
             const SizedBox(height: AppSpacing.xxxl),
             
-            // Milestones in single column with vertical line on left
+            // Milestones in single column with vertical line connecting them
             ...milestones.asMap().entries.map((entry) {
               final milestoneIndex = entry.key;
               final milestone = entry.value;
@@ -184,46 +184,41 @@ class _TimelinePageState extends State<TimelinePage> {
               
               return Column(
                 children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Left side: vertical line and dot
-                      Column(
-                        children: [
-                          // Center dot
-                          Container(
-                            width: 24,
-                            height: 24,
-                            decoration: BoxDecoration(
-                              color: Colors.black,
-                              shape: BoxShape.circle,
-                              border: Border.all(color: Colors.white, width: 4),
-                            ),
-                          ),
-                          // Vertical line down (skip for last card in phase)
-                          if (!isLastInPhase)
-                            Container(
-                              width: 2,
-                              height: AppSpacing.xxxl * 1.5,
-                              color: Colors.grey.shade700,
-                            ),
-                        ],
-                      ),
-                      const SizedBox(width: AppSpacing.lg),
-                      // Right side: Card
-                      Expanded(
-                        child: _buildMilestoneCard(
-                          milestone: milestone,
-                          index: currentGlobalIndex,
-                          delay: (phaseIndex * 4 + milestoneIndex) * 150,
-                          alignment: Alignment.centerLeft,
-                          isLeft: false,
-                        ),
-                      ),
-                    ],
+                  // Card (full width)
+                  _buildMilestoneCard(
+                    milestone: milestone,
+                    index: currentGlobalIndex,
+                    delay: (phaseIndex * 4 + milestoneIndex) * 150,
+                    alignment: Alignment.centerLeft,
+                    isLeft: false,
                   ),
-                  if (!isLastInPhase)
-                    const SizedBox(height: 0), // Line height handled by Column above
+                  // Vertical connector (line and dot) - skip for last card in phase
+                  if (!isLastInPhase) ...[
+                    const SizedBox(height: AppSpacing.lg),
+                    // Vertical line
+                    Container(
+                      width: 2,
+                      height: AppSpacing.xl,
+                      color: Colors.grey.shade700,
+                    ),
+                    // Dot
+                    Container(
+                      width: 16,
+                      height: 16,
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.white, width: 3),
+                      ),
+                    ),
+                    // Vertical line
+                    Container(
+                      width: 2,
+                      height: AppSpacing.xl,
+                      color: Colors.grey.shade700,
+                    ),
+                    const SizedBox(height: AppSpacing.lg),
+                  ],
                 ],
               );
             }).toList(),
