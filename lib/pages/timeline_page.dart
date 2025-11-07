@@ -175,60 +175,21 @@ class _TimelinePageState extends State<TimelinePage> {
             ),
             const SizedBox(height: AppSpacing.xxxl),
             
-            // Milestones with center line
+            // Milestones in single column with vertical line on left
             ...milestones.asMap().entries.map((entry) {
               final milestoneIndex = entry.key;
               final milestone = entry.value;
-              final isLeft = milestoneIndex.isEven;
               final currentGlobalIndex = globalIndex++;
               final isLastInPhase = milestoneIndex == milestones.length - 1;
-              final isFirstInPhase = milestoneIndex == 0;
               
               return Column(
                 children: [
-                  Stack(
-                    alignment: Alignment.center,
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Horizontal line to card (half width from center)
-                      if (!isFirstInPhase || isLeft)
-                        Positioned(
-                          left: isLeft ? null : MediaQuery.of(context).size.width / 2,
-                          right: isLeft ? MediaQuery.of(context).size.width / 2 : null,
-                          child: Container(
-                            height: 2,
-                            width: MediaQuery.of(context).size.width / 2 - AppSpacing.xl - 12,
-                            color: Colors.grey.shade700,
-                          ),
-                        ),
-                      // Horizontal line from phase to first card's center dot
-                      if (isFirstInPhase && !isLeft)
-                        Positioned(
-                          right: MediaQuery.of(context).size.width / 2,
-                          top: -AppSpacing.xxxl,
-                          child: Container(
-                            height: AppSpacing.xxxl + 12,
-                            width: 2,
-                            color: Colors.grey.shade700,
-                          ),
-                        ),
-                      // Card on left or right
-                      Row(
+                      // Left side: vertical line and dot
+                      Column(
                         children: [
-                          // Left side
-                          Expanded(
-                            child: isLeft
-                                ? Padding(
-                                    padding: const EdgeInsets.only(right: AppSpacing.xl),
-                                    child: _buildMilestoneCard(
-                                      milestone: milestone,
-                                      index: currentGlobalIndex,
-                                      delay: (phaseIndex * 4 + milestoneIndex) * 150,
-                                      alignment: Alignment.centerRight,
-                                      isLeft: true,
-                                    ),
-                                  )
-                                : const SizedBox.shrink(),
-                          ),
                           // Center dot
                           Container(
                             width: 24,
@@ -239,32 +200,30 @@ class _TimelinePageState extends State<TimelinePage> {
                               border: Border.all(color: Colors.white, width: 4),
                             ),
                           ),
-                          // Right side
-                          Expanded(
-                            child: !isLeft
-                                ? Padding(
-                                    padding: const EdgeInsets.only(left: AppSpacing.xl),
-                                    child: _buildMilestoneCard(
-                                      milestone: milestone,
-                                      index: currentGlobalIndex,
-                                      delay: (phaseIndex * 4 + milestoneIndex) * 150,
-                                      alignment: Alignment.centerLeft,
-                                      isLeft: false,
-                                    ),
-                                  )
-                                : const SizedBox.shrink(),
-                          ),
+                          // Vertical line down (skip for last card in phase)
+                          if (!isLastInPhase)
+                            Container(
+                              width: 2,
+                              height: AppSpacing.xxxl * 1.5,
+                              color: Colors.grey.shade700,
+                            ),
                         ],
+                      ),
+                      const SizedBox(width: AppSpacing.lg),
+                      // Right side: Card
+                      Expanded(
+                        child: _buildMilestoneCard(
+                          milestone: milestone,
+                          index: currentGlobalIndex,
+                          delay: (phaseIndex * 4 + milestoneIndex) * 150,
+                          alignment: Alignment.centerLeft,
+                          isLeft: false,
+                        ),
                       ),
                     ],
                   ),
-                  // Vertical line down from center (skip for last card in phase)
                   if (!isLastInPhase)
-                    Container(
-                      width: 2,
-                      height: AppSpacing.xxxl * 1.5,
-                      color: Colors.grey.shade700,
-                    ),
+                    const SizedBox(height: 0), // Line height handled by Column above
                 ],
               );
             }).toList(),
