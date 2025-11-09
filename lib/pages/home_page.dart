@@ -88,27 +88,10 @@ class _HomePageState extends State<HomePage> {
                       child: FadeInUp(
                         duration: AppConstants.longAnimation,
                         delay: const Duration(milliseconds: 600),
-                        child: Container(
-                          constraints: const BoxConstraints(
-                            maxWidth: 250,
-                          ),
-                          decoration: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius: BorderRadius.circular(AppRadius.lg),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withValues(alpha: 0.12),
-                                blurRadius: 28,
-                                offset: const Offset(0, 12),
-                              ),
-                            ],
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(AppSpacing.lg),
-                            child: Image.asset(
-                              'assets/images/logistechs_icon.png',
-                            ),
-                          ),
+                        child: Image.asset(
+                          'assets/images/logistechs_icon.png',
+                          width: 250,
+                          fit: BoxFit.contain,
                         ),
                       ),
                     ),
@@ -157,30 +140,9 @@ class _HomePageState extends State<HomePage> {
                       isTransparent: true,
                       child: Transform.translate(
                         offset: const Offset(0, -20),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius: BorderRadius.circular(AppRadius.lg),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withValues(alpha: 0.12),
-                                blurRadius: 28,
-                                offset: const Offset(0, 12),
-                              ),
-                            ],
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(AppSpacing.lg),
-                            child: Transform.scale(
-                              scale: 1.3,
-                              child: FittedBox(
-                                fit: BoxFit.contain,
-                                child: Image.asset(
-                                  'assets/images/logistechs_icon.png',
-                                ),
-                              ),
-                            ),
-                          ),
+                        child: Image.asset(
+                          'assets/images/logistechs_icon.png',
+                          fit: BoxFit.contain,
                         ),
                       ),
                     ),
