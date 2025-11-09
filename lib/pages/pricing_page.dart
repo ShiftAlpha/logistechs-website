@@ -249,11 +249,14 @@ class _PricingPageState extends State<PricingPage> {
                   children: [
                     Icon(FontAwesomeIcons.print, color: const Color(0xFFFF6B35)),
                     SizedBox(width: 12),
-                    Text(
-                      'Consumables (Available as Add-ons)',
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
+                    Expanded(
+                      child: Text(
+                        'Consumables (Available as Add-ons)',
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              fontSize: isMobile ? 18 : null,
+                            ),
+                      ),
                     ),
                   ],
                 ),

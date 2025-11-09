@@ -53,8 +53,6 @@ class ContactPage extends StatelessWidget {
                 _buildContactInfo(),
                 const SizedBox(height: AppSpacing.xxxl),
                 _buildContactFormSection(),
-                const SizedBox(height: AppSpacing.xxxl),
-                _buildMapSection(),
               ],
             )
           : Row(
@@ -62,9 +60,7 @@ class ContactPage extends StatelessWidget {
               children: [
                 Expanded(child: _buildContactInfo()),
                 const SizedBox(width: AppSpacing.xl),
-                Expanded(child: _buildContactFormSection()),
-                const SizedBox(width: AppSpacing.xl),
-                Expanded(child: _buildMapSection()),
+                Expanded(flex: 2, child: _buildContactFormSection()),
               ],
             ),
     );
@@ -189,77 +185,6 @@ class ContactPage extends StatelessWidget {
             ),
             const SizedBox(height: AppSpacing.xl),
             const ContactForm(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildMapSection() {
-    return FadeInRight(
-      duration: AppConstants.longAnimation,
-      delay: const Duration(milliseconds: 400),
-      child: Container(
-        height: 600,
-        padding: const EdgeInsets.all(AppSpacing.xl),
-        decoration: BoxDecoration(
-          color: AppColors.white,
-          borderRadius: BorderRadius.circular(AppRadius.lg),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.1),
-              blurRadius: 20,
-              offset: const Offset(0, 10),
-            ),
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Our Location',
-              style: AppTextStyles.h4,
-            ),
-            const SizedBox(height: AppSpacing.md),
-            Text(
-              AppConstants.detailedAddress,
-              style: AppTextStyles.bodyMedium,
-            ),
-            const SizedBox(height: AppSpacing.xl),
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: AppColors.lightGrey,
-                  borderRadius: BorderRadius.circular(AppRadius.md),
-                  border: Border.all(color: AppColors.textLight),
-                ),
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.map,
-                        size: 80,
-                        color: AppColors.textLight,
-                      ),
-                      const SizedBox(height: AppSpacing.md),
-                      Text(
-                        'Map Placeholder',
-                        style: AppTextStyles.bodyMedium.copyWith(
-                          color: AppColors.textGrey,
-                        ),
-                      ),
-                      const SizedBox(height: AppSpacing.sm),
-                      Text(
-                        '431 The William, Deinfern, Johannesburg',
-                        style: AppTextStyles.bodySmall,
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
           ],
         ),
       ),

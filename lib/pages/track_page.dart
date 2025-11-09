@@ -56,13 +56,10 @@ class _TrackPageState extends State<TrackPage> {
     final isTablet = ResponsiveHelper.isTablet(context);
 
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(80),
-        child: CustomNavBar(currentRoute: '/track'),
-      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
+            const CustomNavBar(currentRoute: '/track'),
             // Search Section
             _buildSearchSection(isMobile),
             
